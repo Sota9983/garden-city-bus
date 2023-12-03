@@ -28,7 +28,7 @@ const BusScheduleApp = () => {
       const data = busTimeData[destination];
       setBusData(data);
     }
-  }, [busTimeData,destination]);
+  }, [busTimeData, destination]);
 
   const handleButtonClick = (dest) => {
     // setDestinationを呼ぶときにアロー関数を使用
@@ -49,10 +49,10 @@ const BusScheduleApp = () => {
       const minutes = currentTime.getMinutes();
       const seconds = currentTime.getSeconds();
       const nowTimes = hour * 60 * 60 + minutes * 60 + seconds;
-  
+
       const destinationData = busData && busData[hour];//現在時刻の出発分を取得
       const destinationNextData = busData && busData[hour + 1];
-  
+
       const nextBusMinutes = destinationData && destinationData.find(time => time - minutes > 0) ? destinationData.find(time => time - minutes > 0) : (destinationNextData ? destinationNextData[0] : undefined);
       const nextBusHour = destinationData && destinationData.find(time => time - minutes > 0) ? hour : (destinationNextData ? hour + 1 : undefined);
       const nextBusTime = nextBusHour * 60 * 60 + nextBusMinutes * 60;
@@ -70,21 +70,23 @@ const BusScheduleApp = () => {
   const TimeView = () => {
     return (
       <React.Fragment>
-        <Button onClick={() => handleButtonClick(null)}>←違う予定を確認する</Button>
-        {nextBus.nextBusHour && nextBus.nextBusMinutes &&
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Button onClick={() => handleButtonClick(null)}>←違う予定を確認する</Button>
+          {nextBus.nextBusHour && nextBus.nextBusMinutes &&
+            <Typography>
+              次のバスは{nextBus.nextBusHour}:{nextBus.nextBusMinutes}です。
+              {Math.floor((nextBus.nextBusTime - nowTime) / 60)}分{(nextBus.nextBusTime - nowTime) % 60}秒後に発車します。
+            </Typography>
+          }
+          {(!nextBus.nextBusHour || !nextBus.nextBusMinutes) &&
+            <Typography>
+              本日のバスは終了しました。
+            </Typography>
+          }
           <Typography>
-            次のバスは{nextBus.nextBusHour}:{nextBus.nextBusMinutes}です。
-            {Math.floor((nextBus.nextBusTime - nowTime) / 60)}分{(nextBus.nextBusTime - nowTime) % 60}秒後に発車します。
+            バスの時刻表は<a href="https://multimedia.3m.com/mws/media/1749678O/shuttle-bus-time-202012-pdf.pdf">こちら</a>を参照しています。
           </Typography>
-        }
-        {(!nextBus.nextBusHour || !nextBus.nextBusMinutes) &&
-          <Typography>
-            本日のバスは終了しました。
-          </Typography>
-        }
-        <Typography>
-          バスの時刻表は<a href="https://multimedia.3m.com/mws/media/1749678O/shuttle-bus-time-202012-pdf.pdf">こちら</a>を参照しています。
-        </Typography>
+        </Box>
       </React.Fragment>
     );
   };
