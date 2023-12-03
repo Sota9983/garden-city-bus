@@ -6,13 +6,13 @@ const BusScheduleApp = () => {
   const [destination, setDestination] = useState(null);
   const [busData, setBusData] = useState(null);
   const [busTimeData, setBusTimeData] = useState(busTime);
-  const [nextBus,setNextBus] = useState({
-    "nextBusMinutes":undefined,
-    "nextBusHour":undefined,
-    "nextBusTime":undefined
+  const [nextBus, setNextBus] = useState({
+    "nextBusMinutes": undefined,
+    "nextBusHour": undefined,
+    "nextBusTime": undefined
   });
-  const [next,setNext] = useState(null);
-  const [nowTime,setNowTime] = useState(0);
+  // const [next, setNext] = useState(null);
+  const [nowTime, setNowTime] = useState(0);
 
   useEffect(() => {
     // busTime.json読み込み用のuseEffect
@@ -28,7 +28,8 @@ const BusScheduleApp = () => {
       const data = busTimeData[destination];
       setBusData(data);
     }
-  }, [destination]);
+  }, [busTimeData,destination]);
+
   const handleButtonClick = (dest) => {
     // setDestinationを呼ぶときにアロー関数を使用
     setDestination(dest);
@@ -39,12 +40,15 @@ const BusScheduleApp = () => {
     </Button>
   );
 
-  const TimeView = () => {
-    useEffect(()=>{
+
+
+  useEffect(() => {
+    const updateTime = () => {
       const currentTime = new Date();
       const hour = currentTime.getHours();
       const minutes = currentTime.getMinutes();
       const seconds = currentTime.getSeconds();
+      const nowTimes = hour * 60 * 60 + minutes * 60 + seconds;
   
       const destinationData = busData && busData[hour];//現在時刻の出発分を取得
       const destinationNextData = busData && busData[hour + 1];
@@ -53,38 +57,30 @@ const BusScheduleApp = () => {
       const nextBusHour = destinationData && destinationData.find(time => time - minutes > 0) ? hour : (destinationNextData ? hour + 1 : undefined);
       const nextBusTime = nextBusHour * 60 * 60 + nextBusMinutes * 60;
       setNextBus({
-        "nextBusMinutes":nextBusMinutes,
-        "nextBusHour":nextBusHour,
-        "nextBusTime":nextBusTime
+        "nextBusMinutes": nextBusMinutes,
+        "nextBusHour": nextBusHour,
+        "nextBusTime": nextBusTime
       });
-    },[next]);
-    
-    useEffect(()=>{
-      const intervalId = setInterval(()=>{
-        const now=new Date();
-        const nowTimes = now.getHours() * 60 * 60 + now.getMinutes() * 60 + now.getSeconds;
-        setNowTime(nowTimes);
-        if (nextBus.nextBusTime === nowTimes) {
-          setNext(nowTimes);
-        }
-      },1000);
-      
-      return () => clearInterval(intervalId);
-    },[]);
-    
+      setNowTime(nowTimes);
+    };
+    const intervalId = setInterval(updateTime, 1000);
+    return () => clearInterval(intervalId);
+  }, [busData]);
+
+  const TimeView = () => {
     return (
       <React.Fragment>
         <Button onClick={() => handleButtonClick(null)}>←違う予定を確認する</Button>
         {nextBus.nextBusHour && nextBus.nextBusMinutes &&
-        <Typography>
-          次のバスは{nextBus.nextBusHour}:{nextBus.nextBusMinutes}です。
-          {Math.floor((nextBus.nextBusTime - nowTime) / 60)}分{(nextBus.nextBusTime - nowTime) % 60}秒後に発車します。
-        </Typography>
+          <Typography>
+            次のバスは{nextBus.nextBusHour}:{nextBus.nextBusMinutes}です。
+            {Math.floor((nextBus.nextBusTime - nowTime) / 60)}分{(nextBus.nextBusTime - nowTime) % 60}秒後に発車します。
+          </Typography>
         }
-        {(!nextBus.nextBusHour||!nextBus.nextBusMinutes)&&
-        <Typography>
-          本日のバスは終了しました。
-        </Typography>
+        {(!nextBus.nextBusHour || !nextBus.nextBusMinutes) &&
+          <Typography>
+            本日のバスは終了しました。
+          </Typography>
         }
         <Typography>
           バスの時刻表は<a href="https://multimedia.3m.com/mws/media/1749678O/shuttle-bus-time-202012-pdf.pdf">こちら</a>を参照しています。
