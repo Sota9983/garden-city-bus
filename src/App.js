@@ -90,11 +90,11 @@ const BusScheduleApp = () => {
     <React.Fragment>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Button onClick={() => handleButtonClick(null)}>←違う予定を確認する</Button>
-        {nextBus.nextBusHour && nextBus.nextBusMinutes && goto && (
+        <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', border: 1, backgroundColor: 'aliceblue', width: window.innerWidth - 4 }}>
+          {goto}
+        </Typography>
+        {nextBus.nextBusHour && nextBus.nextBusMinutes && (
           <React.Fragment>
-            <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', border: 1, backgroundColor: 'aliceblue', width: window.innerWidth - 4 }}>
-              {goto}
-            </Typography>
             {nowTime / 60 >= 7 * 60 + 30 && nowTime / 60 <= 9 * 60 + 55 && morning &&
               <Typography>
                 {morning}
