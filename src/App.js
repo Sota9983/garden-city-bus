@@ -53,8 +53,8 @@ const BusScheduleApp = () => {
   useEffect(() => {
     const updateTime = () => {
       const currentTime = new Date();
-      const hour = 9
-      const minutes = 50
+      const hour = currentTime.getHours();
+      const minutes = currentTime.getMinutes();
       const seconds = currentTime.getSeconds();
       const day = currentTime.getDay();
       const nowTimes = hour * 60 * 60 + minutes * 60 + seconds;
