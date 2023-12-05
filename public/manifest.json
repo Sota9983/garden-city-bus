@@ -1,11 +1,22 @@
 {
   "short_name": "GC Bus App",
   "name": "Gardencity Bus App",
+  "description": "ガーデンシティ御殿山 シャトルバス時刻アプリ",
   "icons": [
     {
       "src": "busFavicon.PNG",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "busFavicon.PNG",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "busFavicon.PNG",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
