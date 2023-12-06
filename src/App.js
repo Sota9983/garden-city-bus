@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import busTime from './busTime.json';
-import { Typography, Button, Box } from '@mui/material';
+import { Typography, Button, Box, AppBar, Toolbar, Icon } from '@mui/material';
+import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 
 const BusScheduleApp = () => {
   const [destination, setDestination] = useState(null);
@@ -89,7 +90,7 @@ const BusScheduleApp = () => {
   const TimeView = () => (
     <React.Fragment>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Button onClick={() => handleButtonClick(null)}>←違う予定を確認する</Button>
+        <Button sx={{ m: 1 }} onClick={() => handleButtonClick(null)}>←違う予定を確認する</Button>
         <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', border: 1, backgroundColor: 'aliceblue', width: window.innerWidth - 4 }}>
           {goto}
         </Typography>
@@ -126,6 +127,20 @@ const BusScheduleApp = () => {
 
   return (
     <React.Fragment>
+      <AppBar position='static' sx={{ display: 'flex', alignItems: 'center' }}>
+        <Toolbar>
+          <Icon
+            size="large"
+            color="inherit"
+            aria-label="bus"
+            sx={{ mr: 2, mb: 0.5 }}>
+            <DirectionsBusIcon />
+          </Icon>
+          <Typography variant='h6' color='inherit'>
+            GC御殿山 シャトルバス
+          </Typography>
+        </Toolbar>
+      </AppBar>
       {!destination && (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Typography variant='h6' sx={{ mt: 1 }}>ガーデンシティへ行く</Typography>
