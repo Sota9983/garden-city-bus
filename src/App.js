@@ -30,10 +30,10 @@ const BusScheduleApp = () => {
     const now = getJapanTime();
     const busTime = new Date(now);
     busTime.setUTCHours(busHour, busMinute, 0, 0);
-    
+
     const diff = busTime - now;
     if (diff < 0) return null;
-    
+
     const minutes = Math.floor(diff / 60000);
     const seconds = Math.floor((diff % 60000) / 1000);
     return { minutes, seconds };
@@ -131,13 +131,13 @@ const BusScheduleApp = () => {
 
   const renderGroup = (routes, title) => (
     <Box sx={{ mb: 3 }}>
-      <Typography variant="h6" sx={{ mb: 1 ,display: 'flex',justifyContent: 'center' }}>{title}</Typography>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+      <Typography variant="h6" sx={{ mb: 1, display: 'flex', justifyContent: 'center' }}>{title}</Typography>
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: 'center', gap: 2 }}>
         {routes.map(r => (
           <Button
             key={r.id}
             variant="contained"
-            sx={{ height: 30 }}
+            sx={{ height: 32 }}
             onClick={() => setDestination(r.id)}
             color={r.color}
           >
@@ -158,7 +158,7 @@ const BusScheduleApp = () => {
 
         {currentDescription && (
           <Card sx={{ background: "#ffe6e6", mb: 2 }}>
-            <CardContent sx={{ py:"8px !important"}}>
+            <CardContent sx={{ py: "8px !important" }}>
               <Typography variant="h6" sx={{ color: "#d32f2f" }}>
                 {currentDescription}
               </Typography>
@@ -171,26 +171,27 @@ const BusScheduleApp = () => {
             {nextBuses.map((b, i) => {
               const remaining = getTimeRemaining(b.h, b.m);
               return (
-              <Card key={i} sx={{ background: "#e3f2fd"}}>
-                <CardContent sx={{ py:"8px !important"}}>
-                  <Typography variant="subtitle2">
-                    {i === 0 ? "次: " : "その次: "}
-                    {String(b.h).padStart(2, "0")}:{String(b.m).padStart(2, "0")}
-                  </Typography>
-                  {remaining && i === 0 && (
+                <Card key={i} sx={{ background: "#e3f2fd" }}>
+                  <CardContent sx={{ py: "8px !important" }}>
+                    <Typography variant="subtitle2">
+                      {i === 0 ? "次: " : "その次: "}
+                      {String(b.h).padStart(2, "0")}:{String(b.m).padStart(2, "0")}
+                    </Typography>
+                    {remaining && i === 0 && (
                       <Typography variant="body1" sx={{ color: "#1976d2", fontWeight: "bold", mt: 1 }}>
                         あと {remaining.minutes}分{String(remaining.seconds).padStart(2, "0")}秒
                       </Typography>
                     )}
-                </CardContent>
-              </Card>
-            )})}
+                  </CardContent>
+                </Card>
+              )
+            })}
           </Box>
         )}
 
         {!currentDescription && nextBuses.length === 0 && (
           <Card sx={{ background: "#f5f5f5", mb: 2 }}>
-            <CardContent>
+            <CardContent sx={{ py: "8px !important" }}>
               <Typography variant="h6">本日のバスは終了しました。</Typography>
             </CardContent>
           </Card>
