@@ -1,7 +1,7 @@
 {
-  "short_name": "GC Bus App",
-  "name": "Gardencity Bus App",
-  "description": "ガーデンシティ御殿山 シャトルバス時刻アプリ",
+  "short_name": "GG Bus App",
+  "name": "GardenGrace Bus App",
+  "description": "ガーデングレイス御殿山 シャトルバス時刻アプリ",
   "icons": [
     {
       "src": "busFavicon.PNG",

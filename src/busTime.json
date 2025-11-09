@@ -1,56 +1,172 @@
 {
-    "GTDtoGC":{
-        "10": [11, 26, 41, 56],
-        "11": [11, 26, 41, 56],
-        "12": [11, 26, 41, 56],
-        "13": [11, 26, 41, 56],
-        "14": [11, 26, 41, 56],
-        "15": [11, 26, 41, 56],
-        "16": [11, 26, 41, 56],
-        "17": [6, 16, 26, 36, 46, 56],
-        "18": [6, 16, 26, 36, 46, 56],
-        "19": [6, 16, 26, 36, 46, 56],
-        "20": [11, 26, 41, 56]
-      },
-    "GCtoGTD":{
-        "10": [0, 15, 30, 45],
-        "11": [0, 15, 30, 45],
-        "12": [0, 15, 30, 45],
-        "13": [0, 15, 30, 45],
-        "14": [0, 15, 30, 45],
-        "15": [0, 15, 30, 45],
-        "16": [0, 15, 30, 45],
-        "17": [0, 10, 20, 30, 40, 50],
-        "18": [0, 10, 20, 30, 40, 50],
-        "19": [0, 10, 20, 30, 40, 50],
-        "20": [0, 15, 30, 45],
-        "21": [0, 15, 30, 45]
-      },
-    "SGWtoGC":{
-        "10": [4, 24, 44],
-        "11": [4, 24, 44],
-        "12": [4, 24, 44],
-        "13": [4, 24, 44],
-        "14": [4, 24, 44],
-        "15": [4, 24, 44],
-        "16": [4, 24, 44, 59],
-        "17": [9, 19, 29, 39, 49, 59],
-        "18": [9, 19, 29, 39, 49, 59],
-        "19": [9, 19, 29, 39, 49, 59],
-        "20": [9, 29, 49]
-      },
-    "GCtoSGW":{
-        "10": [0, 20, 40],
-        "11": [0, 20, 40],
-        "12": [0, 20, 40],
-        "13": [0, 20, 40],
-        "14": [0, 20, 40],
-        "15": [0, 20, 40],
-        "16": [0, 20, 40, 55],
-        "17": [5, 15, 25, 35, 45, 55],
-        "18": [5, 15, 25, 35, 45, 55],
-        "19": [5, 15, 25, 35, 45, 55],
-        "20": [5, 25, 45],
-        "21": [5, 25, 45]
+  "routes": [
+    {
+      "id": "route1",
+      "from": "station",
+      "color": "primary",
+      "buttonName": "五反田駅から",
+      "title": "五反田駅発ガーデングレイス行き",
+      "schedule": {
+        "weekday": {
+          "7": { "description": "7:30〜9:59まで4〜6分間隔", "times": [] },
+          "8": { "description": "7:30〜9:59まで4〜6分間隔", "times": [] },
+          "9": { "description": "7:30〜9:59まで4〜6分間隔", "times": [] },
+          "10": { "description": null, "times": ["11", "26", "41", "56"] },
+          "11": { "description": null, "times": ["11", "26", "41", "56"] },
+          "12": { "description": null, "times": ["11", "26", "41", "56"] },
+          "13": { "description": null, "times": ["11", "26", "41", "56"] },
+          "14": { "description": null, "times": ["11", "26", "41", "56"] },
+          "15": { "description": null, "times": ["11", "26", "41", "56"] },
+          "16": { "description": null, "times": ["11", "26", "41", "56"] },
+          "17": { "description": null, "times": ["06", "16", "26", "36", "46", "56"] },
+          "18": { "description": null, "times": ["06", "16", "26", "36", "46", "56"] },
+          "19": { "description": null, "times": ["06", "16", "26", "36", "46", "56"] },
+          "20": { "description": null, "times": ["11", "26", "41", "56"] }
+        },
+        "saturday": {
+          "7": { "description": null, "times": [] },
+          "8": { "description": null, "times": ["30"] },
+          "9": { "description": null, "times": ["05", "40"] },
+          "10": { "description": null, "times": ["15", "50"] },
+          "11": { "description": null, "times": ["25"] },
+          "12": { "description": null, "times": ["00", "35"] },
+          "13": { "description": null, "times": ["10"] },
+          "14": { "description": null, "times": [] },
+          "15": { "description": null, "times": [] },
+          "16": { "description": null, "times": [] },
+          "17": { "description": null, "times": [] },
+          "18": { "description": null, "times": [] },
+          "19": { "description": null, "times": [] },
+          "20": { "description": null, "times": [] }
+        }
       }
+    },
+    {
+      "id": "route2",
+      "from": "station",
+      "color": "success",
+      "buttonName": "品川駅から",
+      "title": "品川駅発ガーデングレイス行き",
+      "schedule": {
+        "weekday": {
+          "7": { "description": "7:30〜9:59まで6〜7分間隔", "times": [] },
+          "8": { "description": "7:30〜9:59まで6〜7分間隔", "times": [] },
+          "9": { "description": "7:30〜9:59まで6〜7分間隔", "times": [] },
+          "10": { "description": null, "times": ["04", "24", "44"] },
+          "11": { "description": null, "times": ["04", "24", "44"] },
+          "12": { "description": null, "times": ["04", "24", "44"] },
+          "13": { "description": null, "times": ["04", "24", "44"] },
+          "14": { "description": null, "times": ["04", "24", "44"] },
+          "15": { "description": null, "times": ["04", "24", "44"] },
+          "16": { "description": null, "times": ["04", "24", "44", "59"] },
+          "17": { "description": null, "times": ["09", "19", "29", "39", "49", "59"] },
+          "18": { "description": null, "times": ["09", "19", "29", "39", "49", "59"] },
+          "19": { "description": null, "times": ["09", "19", "29", "39", "49"] },
+          "20": { "description": null, "times": ["09", "29", "49"] }
+        },
+        "saturday": {
+          "7": { "description": null, "times": [] },
+          "8": { "description": null, "times": ["40"] },
+          "9": { "description": null, "times": ["15", "50"] },
+          "10": { "description": null, "times": ["25"] },
+          "11": { "description": null, "times": ["00", "35"] },
+          "12": { "description": null, "times": ["10", "45"] },
+          "13": { "description": null, "times": ["20"] },
+          "14": { "description": null, "times": [] },
+          "15": { "description": null, "times": [] },
+          "16": { "description": null, "times": [] },
+          "17": { "description": null, "times": [] },
+          "18": { "description": null, "times": [] },
+          "19": { "description": null, "times": [] },
+          "20": { "description": null, "times": [] }
+        }
+      }
+    },
+    {
+      "id": "route3",
+      "from": "garden",
+      "color": "primary",
+      "buttonName": "五反田駅へ",
+      "title": "ガーデングレイス発五反田駅行き",
+      "schedule": {
+        "weekday": {
+          "7": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい", "times": [] },
+          "8": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい", "times": [] },
+          "9": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい。9時台の最終五反田駅行は9:44発", "times": [] },
+          "10": { "description": null, "times": ["00", "15", "30", "45"] },
+          "11": { "description": null, "times": ["00", "15", "30", "45"] },
+          "12": { "description": null, "times": ["00", "15", "30", "45"] },
+          "13": { "description": null, "times": ["00", "15", "30", "45"] },
+          "14": { "description": null, "times": ["00", "15", "30", "45"] },
+          "15": { "description": null, "times": ["00", "15", "30", "45"] },
+          "16": { "description": null, "times": ["00", "15", "30", "45"] },
+          "17": { "description": null, "times": ["00", "10", "20", "30", "40", "50"] },
+          "18": { "description": null, "times": ["00", "10", "20", "30", "40", "50"] },
+          "19": { "description": null, "times": ["00", "10", "20", "30", "40", "50"] },
+          "20": { "description": null, "times": ["00", "15", "30", "45"] },
+          "21": { "description": null, "times": ["00", "15", "30", "45"] }
+        },
+        "saturday": {
+          "7": { "description": null, "times": [] },
+          "8": { "description": null, "times": ["53"] },
+          "9": { "description": null, "times": ["28"] },
+          "10": { "description": null, "times": ["03", "38"] },
+          "11": { "description": null, "times": ["13", "48"] },
+          "12": { "description": null, "times": ["23", "58"] },
+          "13": { "description": null, "times": ["33"] },
+          "14": { "description": null, "times": [] },
+          "15": { "description": null, "times": [] },
+          "16": { "description": null, "times": [] },
+          "17": { "description": null, "times": [] },
+          "18": { "description": null, "times": [] },
+          "19": { "description": null, "times": [] },
+          "20": { "description": null, "times": [] },
+          "21": { "description": null, "times": [] }
+        }
+      }
+    },
+    {
+      "id": "route4",
+      "from": "garden",
+      "color": "success",
+      "buttonName": "品川駅へ",
+      "title": "ガーデングレイス発品川駅行き",
+      "schedule": {
+        "weekday": {
+          "7": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい", "times": [] },
+          "8": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい", "times": [] },
+          "9": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい。9時台の最終品川駅行は9:46発", "times": [] },
+          "10": { "description": null, "times": ["00", "20", "40"] },
+          "11": { "description": null, "times": ["00", "20", "40"] },
+          "12": { "description": null, "times": ["00", "20", "40"] },
+          "13": { "description": null, "times": ["00", "20", "40"] },
+          "14": { "description": null, "times": ["00", "20", "40"] },
+          "15": { "description": null, "times": ["00", "20", "40"] },
+          "16": { "description": null, "times": ["00", "20", "40", "55"] },
+          "17": { "description": null, "times": ["05", "15", "25", "35", "45", "55"] },
+          "18": { "description": null, "times": ["05", "15", "25", "35", "45", "55"] },
+          "19": { "description": null, "times": ["05", "15", "25", "35", "45", "55"] },
+          "20": { "description": null, "times": ["05", "25", "45"] },
+          "21": { "description": null, "times": ["05", "25", "45"] }
+        },
+        "saturday": {
+          "7": { "description": null, "times": [] },
+          "8": { "description": null, "times": ["36"] },
+          "9": { "description": null, "times": ["11", "46"] },
+          "10": { "description": null, "times": ["21", "56"] },
+          "11": { "description": null, "times": ["31"] },
+          "12": { "description": null, "times": ["06", "41"] },
+          "13": { "description": null, "times": ["16"] },
+          "14": { "description": null, "times": [] },
+          "15": { "description": null, "times": [] },
+          "16": { "description": null, "times": [] },
+          "17": { "description": null, "times": [] },
+          "18": { "description": null, "times": [] },
+          "19": { "description": null, "times": [] },
+          "20": { "description": null, "times": [] },
+          "21": { "description": null, "times": [] }
+        }
+      }
+    }  
+  ]
 }
