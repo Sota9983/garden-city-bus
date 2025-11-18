@@ -96,7 +96,7 @@ const BusScheduleApp = () => {
             <TableRow>
               <TableCell sx={{ borderRight: '1px solid #e0e0e0' }}><b>時</b></TableCell>
               <TableCell sx={{ borderRight: '1px solid #e0e0e0' }}><b>平日</b></TableCell>
-              <TableCell><b>土曜日</b></TableCell>
+              <TableCell sx={{ minWidth: 44 }}><b>土曜日</b></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

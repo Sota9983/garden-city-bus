@@ -90,9 +90,9 @@
       "title": "ガーデングレイス発五反田駅行き",
       "schedule": {
         "weekday": {
-          "7": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい", "times": [] },
-          "8": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい", "times": [] },
-          "9": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい。9時台の最終五反田駅行は9:44発", "times": [] },
+          "7": { "description": "朝の時間帯は、随時運行。", "times": [] },
+          "8": { "description": "朝の時間帯は、随時運行。", "times": [] },
+          "9": { "description": "朝の時間帯は、随時運行。9時台の最終は9:44発。", "times": [] },
           "10": { "description": null, "times": ["00", "15", "30", "45"] },
           "11": { "description": null, "times": ["00", "15", "30", "45"] },
           "12": { "description": null, "times": ["00", "15", "30", "45"] },
@@ -133,9 +133,9 @@
       "title": "ガーデングレイス発品川駅行き",
       "schedule": {
         "weekday": {
-          "7": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい", "times": [] },
-          "8": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい", "times": [] },
-          "9": { "description": "朝の時間帯、ビル発は到着したバスにご乗車下さい。9時台の最終品川駅行は9:46発", "times": [] },
+          "7": { "description": "朝の時間帯は、随時運行。", "times": [] },
+          "8": { "description": "朝の時間帯は、随時運行。", "times": [] },
+          "9": { "description": "朝の時間帯は、随時運行。9時台の最終は9:46発。", "times": [] },
           "10": { "description": null, "times": ["00", "20", "40"] },
           "11": { "description": null, "times": ["00", "20", "40"] },
           "12": { "description": null, "times": ["00", "20", "40"] },
