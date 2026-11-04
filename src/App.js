@@ -104,6 +104,38 @@ const useBusSchedule = (route, currentTime) => {
   return { nextBuses, currentDescription };
 };
 
+const getNextBusTime = (route, currentTime) => {
+  if (!route) return null;
+
+  const dayType = getDayType(currentTime.getDay());
+
+  if (!dayType) return null;
+
+  const schedule = route.schedule[dayType];
+  const nowMinutes =
+    currentTime.getHours() * 60 + currentTime.getMinutes();
+
+  const upcomingBuses = Object.entries(schedule)
+    .flatMap(([hour, data]) =>
+      data.times.map(minute => ({
+        hour: Number(hour),
+        minute: Number(minute)
+      }))
+    )
+    .filter(bus =>
+      bus.hour * 60 + Number(bus.minute) > nowMinutes
+    )
+    .sort((a, b) =>
+      a.hour * 60 + a.minute - (b.hour * 60 + b.minute)
+    );
+
+  if (upcomingBuses.length === 0) return null;
+
+  const nextBus = upcomingBuses[0];
+
+  return formatTime(nextBus.hour, Number(nextBus.minute));
+};
+
 const TimeTableRow = ({ hour, weekdayData, saturdayData }) => {
   const formatCellText = (data) => {
     if (!data) return '';
@@ -215,23 +247,69 @@ const RouteInfo = ({ route, nextBuses, currentDescription, onBack, currentTime }
   </Box>
 );
 
-const RouteGroup = ({ routes, title, onSelectRoute }) => (
+const RouteGroup = ({ routes, title, onSelectRoute, currentTime }) => (
   <Box sx={{ mb: 3 }}>
-    <Typography variant="h6" sx={{ mb: 1, display: 'flex', justifyContent: 'center' }}>
+    <Typography
+      variant="h6"
+      sx={{ mb: 1, display: 'flex', justifyContent: 'center' }}
+    >
       {title}
     </Typography>
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-      {routes.map(route => (
-        <Button
-          key={route.id}
-          variant="contained"
-          sx={{ height: 32 }}
-          onClick={() => onSelectRoute(route.id)}
-          color={route.color}
-        >
-          {route.buttonName}
-        </Button>
-      ))}
+
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2
+      }}
+    >
+      {routes.map(route => {
+        const nextBusTime = getNextBusTime(route, currentTime);
+
+        return (
+          <Box
+            key={route.id}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{ height: 36, minWidth: 120 }}
+              onClick={() => onSelectRoute(route.id)}
+              color={route.color}
+            >
+              {route.buttonName}
+            </Button>
+
+            {nextBusTime ? (
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ lineHeight: 1.2 }}
+                >
+                  次のバス
+                </Typography>
+
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 'bold', lineHeight: 1.4 }}
+                >
+                  {nextBusTime}
+                </Typography>
+              </Box>
+            ) : (
+              <Typography variant="caption" color="text.secondary">
+                本日終了
+              </Typography>
+            )}
+          </Box>
+        );
+      })}
     </Box>
   </Box>
 );
@@ -267,11 +345,13 @@ const BusScheduleApp = () => {
             routes={groupedRoutes.station}
             title="ガーデングレイスへ行く"
             onSelectRoute={setDestination}
+            currentTime={currentTime}
           />
           <RouteGroup
             routes={groupedRoutes.garden}
             title="ガーデングレイスから帰る"
             onSelectRoute={setDestination}
+            currentTime={currentTime}
           />
         </Box>
       ) : (
